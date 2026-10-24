@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  superkart_backend:
+    build:
+      context: ./backend_files
+      dockerfile: Dockerfile
+    container_name: superkart_backend
+    ports:
+      - "7860:7860"
+    restart: always
+
+  superkart_frontend:
+    build:
+      context: ./frontend_files
+      dockerfile: Dockerfile.frontend
+    container_name: superkart_frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - superkart_backend
+    restart: always
